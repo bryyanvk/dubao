@@ -1,4 +1,6 @@
-/* ================= VARIÁVEIS CSS ================= */
+/* ================================ */
+/* === VARIÁVEIS BASE (Cores, fontes, etc) === */
+/* ================================ */
 :root {
   --fonte-primaria: 'Orbitron', sans-serif;
   --tron-azul: #00f0ff;
@@ -9,14 +11,18 @@
   --transicao: 0.4s ease-in-out;
 }
 
-/* ================= RESET DE MARGENS E PADDING ================= */
+/* ================================ */
+/* === RESET DE MARGENS E PADDING === */
+/* ================================ */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* ================= ESTILO BASE DO BODY ================= */
+/* ================================ */
+/* === ESTILO BASE DO BODY === */
+/* ================================ */
 body {
   font-family: var(--fonte-primaria);
   background-color: var(--preto);
@@ -27,18 +33,20 @@ body {
   position: relative;
 }
 
-/* ================= MODO CLARO (P&B) ================= */
+/* ================================ */
+/* === MODO CLARO (PRETO E BRANCO) === */
+/* ================================ */
 body.pb {
   background-color: #fff;
   color: #000;
 }
 
-/* Remove efeito chuva de pixels no modo claro */
+/* Remove efeito chuva no modo claro */
 body.pb::before {
   content: none !important;
 }
 
-/* Header e footer no modo claro */
+/* Header e footer modo claro */
 body.pb header,
 body.pb footer {
   background-color: #000;
@@ -46,14 +54,14 @@ body.pb footer {
   border-color: #fff !important;
 }
 
-/* ================= EFEITO CHUVA DE PIXELS NO FUNDO (MODO ESCURO) ================= */
+/* ================================ */
+/* === EFEITO CHUVA DE PIXELS NO FUNDO (MODO ESCURO) === */
+/* ================================ */
 body::before {
   content: '';
   position: fixed;
-  top: 0; 
-  left: 0;
-  width: 100%; 
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   background: repeating-linear-gradient(
     to bottom,
     transparent 0px,
@@ -62,16 +70,17 @@ body::before {
   );
   animation: chuva 0.5s linear infinite;
   z-index: -1;
-  pointer-events: none; /* evita interferência com cliques */
+  pointer-events: none;
 }
 
-/* Animação da chuva de pixels */
 @keyframes chuva {
   0% { background-position: 0 0; }
   100% { background-position: 0 10px; }
 }
 
-/* ================= ESTILO DO HEADER / NAVBAR ================= */
+/* ================================ */
+/* === ESTILO DO HEADER / NAV === */
+/* ================================ */
 header {
   background: rgba(0, 0, 0, 0.9);
   padding: 1rem 2rem;
@@ -79,32 +88,30 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: sticky; /* fixa o topo ao rolar a página */
+  position: sticky;
   top: 0;
   z-index: 99;
   transition: background-color var(--transicao), color var(--transicao);
 }
 
-/* Logo no header */
+/* Logo */
 .logo h1 {
   color: var(--tron-azul);
   font-size: 1.8rem;
-  user-select: none; /* evita seleção do texto */
+  user-select: none;
 }
 
-/* Logo no modo claro */
 body.pb .logo h1 {
   color: #fff;
 }
 
-/* Lista dos links de navegação */
+/* Links da navegação */
 .nav-links {
   list-style: none;
   display: flex;
   gap: 1.5rem;
 }
 
-/* Links de navegação */
 .nav-links a {
   text-decoration: none;
   color: var(--tron-claro);
@@ -113,28 +120,26 @@ body.pb .logo h1 {
   user-select: none;
 }
 
-/* Links no modo claro */
 body.pb .nav-links a {
   color: #fff;
 }
 
-/* Efeito hover dos links no modo escuro */
 .nav-links a:hover {
   color: var(--tron-azul);
 }
 
-/* Efeito hover dos links no modo claro */
 body.pb .nav-links a:hover {
   color: #000;
 }
 
-/* ================= CONTROLES DE TEMA E IDIOMA ================= */
+/* ================================ */
+/* === CONTROLES DE TEMA E IDIOMA === */
+/* ================================ */
 .controls {
   display: flex;
   gap: 0.5rem;
 }
 
-/* Botões de alternar tema e idioma */
 #themeToggle,
 #languageToggle {
   background: transparent;
@@ -148,28 +153,27 @@ body.pb .nav-links a:hover {
   user-select: none;
 }
 
-/* Botões no modo claro */
 body.pb #themeToggle,
 body.pb #languageToggle {
   color: #000;
   border-color: #000;
 }
 
-/* Hover dos botões no modo escuro */
 #themeToggle:hover,
 #languageToggle:hover {
   background: var(--tron-azul);
   color: var(--preto);
 }
 
-/* Hover dos botões no modo claro */
 body.pb #themeToggle:hover,
 body.pb #languageToggle:hover {
   background: #000;
   color: #fff;
 }
 
-/* ================= SEÇÕES GERAIS ================= */
+/* ================================ */
+/* === SEÇÕES GERAIS === */
+/* ================================ */
 .section {
   padding: 4rem 2rem;
   max-width: 1200px;
@@ -180,13 +184,11 @@ body.pb #languageToggle:hover {
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-/* Classe para mostrar as seções com efeito */
 .section.show {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Títulos das seções */
 .section h2 {
   font-size: 2.5rem;
   margin-bottom: 2rem;
@@ -196,13 +198,14 @@ body.pb #languageToggle:hover {
   user-select: none;
 }
 
-/* Títulos no modo claro */
 body.pb .section h2 {
   color: #000;
   border-color: #000;
 }
 
-/* ================= HERO (PÁGINA INICIAL) ================= */
+/* ================================ */
+/* === HERO (PÁGINA INICIAL) === */
+/* ================================ */
 .hero-container {
   text-align: center;
   padding: 4rem 2rem;
@@ -210,7 +213,6 @@ body.pb .section h2 {
   margin: 0 auto;
 }
 
-/* Imagem circular do perfil */
 .hero-img {
   width: 160px;
   height: 160px;
@@ -221,14 +223,12 @@ body.pb .section h2 {
   object-fit: cover;
 }
 
-/* Subtítulo abaixo da imagem */
 .hero-sub {
   font-size: 1.1rem;
   color: var(--tron-azul);
   margin-bottom: 0.5rem;
 }
 
-/* Nome principal */
 .hero-nome {
   font-size: 2.8rem;
   font-weight: bold;
@@ -236,14 +236,12 @@ body.pb .section h2 {
   margin-bottom: 0.3rem;
 }
 
-/* Cargo ou descrição curta */
 .hero-cargo {
   font-size: 1.2rem;
   color: #b58aff;
   margin-bottom: 1rem;
 }
 
-/* Descrição maior */
 .hero-desc {
   max-width: 600px;
   margin: 0 auto 2rem auto;
@@ -251,7 +249,6 @@ body.pb .section h2 {
   color: var(--tron-claro);
 }
 
-/* Container dos botões do hero */
 .hero-botoes {
   display: flex;
   justify-content: center;
@@ -259,7 +256,6 @@ body.pb .section h2 {
   flex-wrap: wrap;
 }
 
-/* Estilo base dos botões */
 .btn {
   padding: 0.7rem 1.5rem;
   border-radius: 30px;
@@ -270,45 +266,39 @@ body.pb .section h2 {
   transition: all 0.3s ease;
 }
 
-/* Botão roxo preenchido */
 .btn-roxo {
   background: #9f58f6;
   color: #fff;
   box-shadow: 0 0 15px #9f58f6;
 }
 
-/* Hover botão roxo */
 .btn-roxo:hover {
   box-shadow: 0 0 25px #9f58f6;
 }
 
-/* Botão transparente com borda roxa */
 .btn-escuro {
   background: transparent;
   border: 2px solid #9f58f6;
   color: #9f58f6;
 }
 
-/* Hover botão transparente */
 .btn-escuro:hover {
   background: #9f58f6;
   color: #fff;
 }
 
-/* Botão transparente com borda roxa (mesmo que btn-escuro, parece repetido) */
 .btn-claro {
   background: transparent;
   border: 2px solid #9f58f6;
   color: #9f58f6;
 }
 
-/* Hover btn-claro */
 .btn-claro:hover {
   background: #9f58f6;
   color: #fff;
 }
 
-/* ================= HERO MODO CLARO ================= */
+/* === HERO MODO CLARO === */
 body.pb .hero-nome { color: #000; }
 body.pb .hero-cargo { color: #8000ff; }
 body.pb .hero-desc { color: #000; }
@@ -334,7 +324,9 @@ body.pb .btn-claro:hover {
   color: #fff;
 }
 
-/* ================= FOOTER ================= */
+/* ================================ */
+/* === FOOTER === */
+/* ================================ */
 footer {
   background-color: rgba(0, 0, 0, 0.9);
   color: var(--tron-claro);
@@ -344,14 +336,15 @@ footer {
   user-select: none;
 }
 
-/* Footer modo claro */
 body.pb footer {
   background-color: #000;
   color: #fff;
   border-top-color: #fff;
 }
 
-/* ================= SCROLL SUAVE E BOTÃO ATIVO ================= */
+/* ================================ */
+/* === SCROLL SUAVE E BOTÃO ATIVO === */
+/* ================================ */
 button,
 .btn,
 #themeToggle,
@@ -360,20 +353,17 @@ button,
   user-select: none;
 }
 
-/* Efeito quando botão está ativo (clicado) */
 button.ativo,
 .btn.ativo {
   transform: scale(0.95);
   box-shadow: 0 0 12px var(--tron-azul);
 }
 
-/* Efeito ativo no modo claro */
 body.pb button.ativo,
 body.pb .btn.ativo {
   box-shadow: 0 0 12px #000;
 }
 
-/* Scroll suave da página */
 html {
   scroll-behavior: smooth;
 }
