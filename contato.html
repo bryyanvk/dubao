@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="titulo_pagina">Contato | Portfólio</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <!-- === NAV === -->
+  <header>
+    <nav>
+      <div class="logo"><h1 data-i18n="logo">🌀 Bryyan.Dev</h1></div>
+      <ul class="nav-links">
+        <li><a href="index.html" data-i18n="nav_inicio">Início</a></li>
+        <li><a href="sobre.html" data-i18n="nav_sobre">Sobre</a></li>
+        <li><a href="habilidades.html" data-i18n="nav_habilidades">Habilidades</a></li>
+        <li><a href="projetos.html" data-i18n="nav_projetos">Projetos</a></li>
+        <li><a href="contato.html" data-i18n="nav_contato">Contato</a></li>
+      </ul>
+      <div class="controls">
+        <button id="themeToggle" data-i18n="botao_tema">Alternar Tema</button>
+        <select id="languageToggle" aria-label="Selecionar idioma">
+          <option value="pt">🌐 PT</option>
+          <option value="en">🌐 EN</option>
+        </select>
+      </div>
+    </nav>
+  </header>
+
+  <!-- === CONTATO MODERNO === -->
+  <section class="section contato">
+    <h2 data-i18n="contato_lets_talk">Vamos Conversar?</h2>
+    <p data-i18n="contato_intro">
+      Se quiser conversar, colaborar ou só trocar uma ideia, meus contatos estão abaixo:
+    </p>
+
+    <!-- === CONTACT CARDS === -->
+    <div class="contact-grid">
+      <div class="contact-card">
+        <i data-lucide="mail"></i>
+        <h3 data-i18n="contato_email">Email</h3>
+        <p>bryyan@email.com</p>
+      </div>
+      <div class="contact-card">
+        <i data-lucide="github"></i>
+        <h3 data-i18n="contato_github">GitHub</h3>
+        <p>/bryyan-dev</p>
+      </div>
+      <div class="contact-card">
+        <i data-lucide="linkedin"></i>
+        <h3 data-i18n="contato_linkedin">LinkedIn</h3>
+        <p>/in/bryyan</p>
+      </div>
+      <div class="contact-card">
+        <i data-lucide="map-pin"></i>
+        <h3 data-i18n="contato_localizacao">Localização</h3>
+        <p>Minas Gerais, BR</p>
+      </div>
+      <div class="contact-card">
+        <i data-lucide="instagram"></i>
+        <h3 data-i18n="contato_instagram">Instagram</h3>
+        <p>@bryyan.dev</p>
+      </div>
+    </div>
+
+    <!-- === CONNECT WITH ME === -->
+    <div class="connect-buttons">
+      <a href="mailto:bryyan@email.com" class="btn" data-i18n="contato_get_in_touch">Entre em Contato</a>
+      <a href="projetos.html" class="btn" data-i18n="contato_view_projects">Ver Projetos</a>
+    </div>
+
+    <!-- === STATS === -->
+    <div class="quick-stats">
+      <div class="stat">
+        <h3>3+</h3>
+        <p data-i18n="contato_projetos_concluidos">Projetos Concluídos</p>
+      </div>
+      <div class="stat">
+        <h3>100%</h3>
+        <p data-i18n="contato_dedicacao">Dedicação</p>
+      </div>
+      <div class="stat">
+        <h3>∞</h3>
+        <p data-i18n="contato_vontade_aprender">Vontade de aprender</p>
+      </div>
+    </div>
+
+    <!-- === CTA FINAL === -->
+    <div class="cta-final">
+      <h2 data-i18n="contato_ready_to_collaborate">Pronto para colaborar?</h2>
+      <p data-i18n="contato_cta_text">
+        Estou sempre aberto para novos desafios, ideias e projetos. Bora criar algo juntos?
+      </p>
+      <a href="mailto:bryyan@email.com" class="btn" data-i18n="contato_me_chame">Me chame</a>
+    </div>
+  </section>
+
+  <!-- === FOOTER === -->
+  <footer>
+    <p data-i18n="footer_direitos">&copy; 2025 Bryyan.Dev • Todos os direitos reservados</p>
+  </footer>
+
+  <!-- === SCRIPT === -->
+  <script src="script.js"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
