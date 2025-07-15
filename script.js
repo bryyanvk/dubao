@@ -1,10 +1,13 @@
+// ===========================
 // === VARIÁVEIS PRINCIPAIS ===
-// Pega os elementos dos botões tema e idioma, e o body
+// ===========================
 const themeToggle = document.getElementById("themeToggle");
 const languageToggle = document.getElementById("languageToggle");
 const body = document.body;
 
-// === DICIONÁRIO DE TRADUÇÕES (PT e EN) ===
+// ===============================
+// === DICIONÁRIO DE TRADUÇÕES ===
+// ===============================
 const translations = {
   pt: {
     logo: "🌀 Bryyan.Dev",
@@ -60,28 +63,28 @@ const translations = {
   }
 };
 
+// ================================
 // === FUNÇÃO PARA APLICAR IDIOMA ===
-// Recebe 'pt' ou 'en' e atualiza todos os elementos com data-i18n correspondente
+// ================================
 function applyLanguage(lang) {
   const elements = document.querySelectorAll("[data-i18n]");
   elements.forEach(el => {
     const key = el.getAttribute("data-i18n");
     if (translations[lang] && translations[lang][key]) {
-      // Para inputs e textareas troca o placeholder
       if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
         el.placeholder = translations[lang][key];
       } else if (el.tagName === "TITLE") {
-        // Atualiza título da página
         document.title = translations[lang][key];
       } else {
-        // Atualiza o texto normal
         el.innerText = translations[lang][key];
       }
     }
   });
 }
 
-// === FUNÇÃO PARA APLICAR TEMA ===
+// ================================
+// === FUNÇÕES DE TEMA E ARMAZENAMENTO ===
+// ================================
 function applyTheme(theme) {
   if (theme === "pb") {
     body.classList.add("pb");
@@ -90,25 +93,21 @@ function applyTheme(theme) {
     body.classList.add("tron");
     body.classList.remove("pb");
   }
-  // Guarda no localStorage para lembrar depois
   localStorage.setItem("tema", theme);
 }
 
-// === FUNÇÃO PARA ALTERAR TEMA AO CLICAR ===
 function toggleTheme() {
   const currentTheme = body.classList.contains("pb") ? "pb" : "tron";
   const newTheme = currentTheme === "pb" ? "tron" : "pb";
   applyTheme(newTheme);
 }
 
-// === FUNÇÃO PARA ALTERAR IDIOMA AO MUDAR SELEÇÃO ===
 function toggleLanguage(event) {
   const lang = event.target.value;
   localStorage.setItem("idioma", lang);
   applyLanguage(lang);
 }
 
-// === RESTAURA CONFIGURAÇÕES SALVAS AO CARREGAR A PÁGINA ===
 function restoreSettings() {
   const savedTheme = localStorage.getItem("tema") || "tron";
   applyTheme(savedTheme);
@@ -118,25 +117,28 @@ function restoreSettings() {
   applyLanguage(savedLang);
 }
 
-// === ADICIONA EVENTOS ===
+// ===========================
+// === EVENTOS PRINCIPAIS ===
+// ===========================
 themeToggle.addEventListener("click", toggleTheme);
 languageToggle.addEventListener("change", toggleLanguage);
 
-// === AO CARREGAR A PÁGINA ===
 document.addEventListener("DOMContentLoaded", () => {
   restoreSettings();
 
-  // Adiciona animação de entrada nas seções
+  // Animação das seções
   document.querySelectorAll(".section").forEach(sec => {
     sec.classList.add("hidden");
     observer.observe(sec);
   });
 
-  // Ativa ícones lucide se disponível
+  // Ativa ícones lucide
   if (window.lucide) lucide.createIcons();
 });
 
-// === SCROLL SUAVE PARA LINKS INTERNOS ===
+// ===========================
+// === SCROLL SUAVE ===
+// ===========================
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener("click", e => {
     e.preventDefault();
@@ -145,13 +147,17 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// === FEEDBACK VISUAL AO CLICAR NOS BOTÕES ===
+// ===========================
+// === FEEDBACK VISUAL DE CLIQUE ===
+// ===========================
 document.querySelectorAll("button, .btn").forEach(btn => {
   btn.addEventListener("mousedown", () => btn.classList.add("ativo"));
   btn.addEventListener("mouseup", () => btn.classList.remove("ativo"));
 });
 
-// === OBSERVADOR PARA ANIMAÇÃO DAS SEÇÕES AO FICAREM VISÍVEIS ===
+// ===========================
+// === OBSERVADOR PARA ANIMAÇÃO DAS SEÇÕES ===
+// ===========================
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
