@@ -1,5 +1,5 @@
 // === VARIÁVEIS PRINCIPAIS ===
-// Pega os elementos do DOM para os botões de tema e idioma, além do body
+// Pega os elementos dos botões tema e idioma, e o body
 const themeToggle = document.getElementById("themeToggle");
 const languageToggle = document.getElementById("languageToggle");
 const body = document.body;
@@ -61,20 +61,20 @@ const translations = {
 };
 
 // === FUNÇÃO PARA APLICAR IDIOMA ===
-// Recebe o código do idioma ('pt' ou 'en') e atualiza todos os elementos com o atributo data-i18n
+// Recebe 'pt' ou 'en' e atualiza todos os elementos com data-i18n correspondente
 function applyLanguage(lang) {
   const elements = document.querySelectorAll("[data-i18n]");
   elements.forEach(el => {
     const key = el.getAttribute("data-i18n");
     if (translations[lang] && translations[lang][key]) {
-      // Se for input ou textarea, usa placeholder
+      // Para inputs e textareas troca o placeholder
       if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
         el.placeholder = translations[lang][key];
       } else if (el.tagName === "TITLE") {
         // Atualiza título da página
         document.title = translations[lang][key];
       } else {
-        // Atualiza texto dos elementos
+        // Atualiza o texto normal
         el.innerText = translations[lang][key];
       }
     }
@@ -82,7 +82,6 @@ function applyLanguage(lang) {
 }
 
 // === FUNÇÃO PARA APLICAR TEMA ===
-// Adiciona a classe 'pb' (preto e branco) ou 'tron' (tema escuro com neon)
 function applyTheme(theme) {
   if (theme === "pb") {
     body.classList.add("pb");
@@ -91,13 +90,12 @@ function applyTheme(theme) {
     body.classList.add("tron");
     body.classList.remove("pb");
   }
-  // Salva no localStorage para manter entre recarregamentos
+  // Guarda no localStorage para lembrar depois
   localStorage.setItem("tema", theme);
 }
 
 // === FUNÇÃO PARA ALTERAR TEMA AO CLICAR ===
 function toggleTheme() {
-  // Verifica o tema atual e troca para o oposto
   const currentTheme = body.classList.contains("pb") ? "pb" : "tron";
   const newTheme = currentTheme === "pb" ? "tron" : "pb";
   applyTheme(newTheme);
@@ -106,39 +104,35 @@ function toggleTheme() {
 // === FUNÇÃO PARA ALTERAR IDIOMA AO MUDAR SELEÇÃO ===
 function toggleLanguage(event) {
   const lang = event.target.value;
-  // Salva no localStorage e aplica imediatamente
   localStorage.setItem("idioma", lang);
   applyLanguage(lang);
 }
 
-// === FUNÇÃO PARA RESTAURAR CONFIGURAÇÕES SALVAS NO LOCALSTORAGE AO CARREGAR ===
+// === RESTAURA CONFIGURAÇÕES SALVAS AO CARREGAR A PÁGINA ===
 function restoreSettings() {
-  // Aplica tema salvo ou tema padrão (tron)
   const savedTheme = localStorage.getItem("tema") || "tron";
   applyTheme(savedTheme);
 
-  // Aplica idioma salvo ou idioma padrão (pt)
   const savedLang = localStorage.getItem("idioma") || "pt";
   languageToggle.value = savedLang;
   applyLanguage(savedLang);
 }
 
-// === ADICIONA EVENTOS NOS BOTÕES ===
+// === ADICIONA EVENTOS ===
 themeToggle.addEventListener("click", toggleTheme);
 languageToggle.addEventListener("change", toggleLanguage);
 
 // === AO CARREGAR A PÁGINA ===
 document.addEventListener("DOMContentLoaded", () => {
-  // Restaura configurações salvas
   restoreSettings();
 
-  // Adiciona animação de entrada para seções
+  // Adiciona animação de entrada nas seções
   document.querySelectorAll(".section").forEach(sec => {
-    sec.classList.add("hidden"); // inicializa oculto
-    observer.observe(sec);       // observa para animar quando visível
+    sec.classList.add("hidden");
+    observer.observe(sec);
   });
 
-  // Ativa ícones Lucide (se estiver carregado)
+  // Ativa ícones lucide se disponível
   if (window.lucide) lucide.createIcons();
 });
 
@@ -151,7 +145,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// === FEEDBACK VISUAL AO CLICAR EM BOTÕES ===
+// === FEEDBACK VISUAL AO CLICAR NOS BOTÕES ===
 document.querySelectorAll("button, .btn").forEach(btn => {
   btn.addEventListener("mousedown", () => btn.classList.add("ativo"));
   btn.addEventListener("mouseup", () => btn.classList.remove("ativo"));
@@ -161,8 +155,8 @@ document.querySelectorAll("button, .btn").forEach(btn => {
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      entry.target.classList.add("show"); // adiciona classe para animar
-      observer.unobserve(entry.target);   // para de observar após animação
+      entry.target.classList.add("show");
+      observer.unobserve(entry.target);
     }
   });
 }, { threshold: 0.2 });
